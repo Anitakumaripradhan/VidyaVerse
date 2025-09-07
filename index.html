@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VidyaVerse #DataDreamer Campaign Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            background-image: radial-gradient(circle at top left, rgba(128, 90, 213, 0.1), transparent 35%),
+                              radial-gradient(circle at bottom right, rgba(31, 64, 104, 0.2), transparent 35%);
+            color: #e0e0e0;
+        }
+
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 60vh;
+            width: 100%;
+        }
+
+        .brand-gradient {
+            background: linear-gradient(90deg, #9f7aea, #6b46c1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card {
+            background-color: rgba(22, 36, 71, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            border: 1px solid rgba(31, 64, 104, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+            border-color: rgba(159, 122, 234, 0.8);
+        }
+
+        .btn-filter {
+            background-color: rgba(31, 64, 104, 0.7);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .btn-filter:hover {
+            background-color: #805ad5;
+            transform: scale(1.05);
+        }
+        
+        .btn-filter.active {
+            background-color: #805ad5;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(128, 90, 213, 0.5);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .kpi-card:nth-child(1) { animation-delay: 0.1s; }
+        .kpi-card:nth-child(2) { animation-delay: 0.2s; }
+        .kpi-card:nth-child(3) { animation-delay: 0.3s; }
+        .kpi-card:nth-child(4) { animation-delay: 0.4s; }
+        .summary-card:nth-child(1) { animation-delay: 0.5s; }
+        .summary-card:nth-child(2) { animation-delay: 0.6s; }
+        .summary-card:nth-child(3) { animation-delay: 0.7s; }
+
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-bold text-white">VidyaVerse <span class="brand-gradient">#DataDreamer</span> Campaign</h1>
+            <p class="text-lg text-gray-400 mt-3">An Interactive Analysis of Social Media Performance</p>
+        </header>
+
+        <!-- KPI Cards Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            <div class="card kpi-card p-6 rounded-xl text-center">
+                <div class="flex justify-center items-center mx-auto bg-green-900/50 rounded-full h-12 w-12 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-300">Highest Completion Rate</h3>
+                <p class="text-4xl font-bold text-green-400 mt-2">58.14%</p>
+                <p class="text-md text-gray-400">on Instagram</p>
+            </div>
+            <div class="card kpi-card p-6 rounded-xl text-center">
+                 <div class="flex justify-center items-center mx-auto bg-green-900/50 rounded-full h-12 w-12 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01" /></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-300">Best Cost Per Conversion</h3>
+                <p class="text-4xl font-bold text-green-400 mt-2">~₹3,000</p>
+                <p class="text-md text-gray-400">on Instagram</p>
+            </div>
+            <div class="card kpi-card p-6 rounded-xl text-center">
+                <div class="flex justify-center items-center mx-auto bg-blue-900/50 rounded-full h-12 w-12 mb-4">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-300">Highest Student Signups</h3>
+                <p class="text-4xl font-bold text-blue-400 mt-2">~58</p>
+                <p class="text-md text-gray-400">from Instagram</p>
+            </div>
+            <div class="card kpi-card p-6 rounded-xl text-center">
+                 <div class="flex justify-center items-center mx-auto bg-yellow-900/50 rounded-full h-12 w-12 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-300">Overall Avg. Completion</h3>
+                <p class="text-4xl font-bold text-yellow-400 mt-2">42%</p>
+                <p class="text-md text-gray-400">Across Platforms</p>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Area -->
+        <div class="card p-6 rounded-xl">
+            <!-- Chart Filters -->
+            <div class="mb-6 text-center">
+                <h2 class="text-2xl font-semibold text-white mb-4">Explore Campaign Metrics</h2>
+                <div id="filters" class="flex flex-wrap justify-center gap-2">
+                    <!-- Filter buttons will be inserted here by JS -->
+                </div>
+            </div>
+
+            <!-- Chart Display -->
+            <div class="chart-container">
+                <canvas id="campaignChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Summary & Recommendations Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+            <div class="card summary-card p-6 rounded-xl">
+                <h2 class="text-2xl font-bold text-purple-400 mb-3">Executive Summary</h2>
+                <p class="text-gray-300 leading-relaxed">The #DataDreamer campaign across Instagram, YouTube, and LinkedIn generated massive clicks and impressions. However, true success is measured by student signups and course completions. This analysis dives into metrics like Cost Per Signup (CPS), Click-Through Rate (CTR), and average completion percentage to evaluate the true effectiveness of the campaign on each platform.</p>
+            </div>
+            <div class="card summary-card p-6 rounded-xl">
+                <h2 class="text-2xl font-bold text-purple-400 mb-3">Key Insights</h2>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 leading-relaxed">
+                    <li><b>Instagram:</b> Leads in completion percentage (58.14%) and delivers the lowest cost per conversion, indicating the highest ROI and most engaged students.</li>
+                    <li><b>LinkedIn:</b> Attracts a high number of motivated, professional learners and shows the highest raw conversion rate, but at a significantly higher cost.</li>
+                    <li><b>YouTube:</b> Effective for brand awareness and reach, but less efficient than other platforms in driving quality conversions and completions.</li>
+                     <li><b>Overall Performance:</b> With a 42% average completion rate, VidyaVerse is performing significantly above the industry benchmark in India (5-15%).</li>
+                </ul>
+            </div>
+            <div class="card summary-card p-6 rounded-xl">
+                <h2 class="text-2xl font-bold text-purple-400 mb-3">Recommendations</h2>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 leading-relaxed">
+                    <li><b>Invest in Instagram:</b> Increase ad spend on Instagram as it provides the best return on investment and highest quality student engagement.</li>
+                    <li><b>Maintain LinkedIn Presence:</b> Reduce spend but continue to leverage LinkedIn for its strong professional student base.</li>
+                    <li><b>Use YouTube for Reach:</b> Keep YouTube in the marketing mix for top-of-funnel brand awareness.</li>
+                    <li><b>Enhance Platform with AI:</b> Integrate AI-driven features like chatbots for doubt clearance and lecture summaries to boost engagement and ROI further.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const platformColors = {
+            'Instagram': '#E1306C',
+            'LinkedIn': '#0077B5',
+            'YouTube': '#FF0000'
+        };
+
+        const campaignData = {
+            'Student Count': {
+                labels: ['Instagram', 'LinkedIn', 'YouTube'],
+                data: [58, 56, 50],
+                title: 'Number of Student Signups by Platform'
+            },
+            'Avg Completion (%)': {
+                labels: ['Instagram', 'LinkedIn', 'YouTube'],
+                data: [58.14, 56, 50.5],
+                title: 'Average Course Completion Percentage by Platform'
+            },
+            'Click Through Rate (%)': {
+                labels: ['Instagram', 'YouTube', 'LinkedIn'],
+                data: [9, 8, 7],
+                title: 'Click Through Rate (CTR) by Platform'
+            },
+            'Conversion Quality': {
+                labels: ['Instagram', 'LinkedIn', 'YouTube'],
+                data: [16, 14.8, 11],
+                title: 'Conversion Quality Score by Platform'
+            },
+            'Cost Per Click (₹)': {
+                labels: ['LinkedIn', 'YouTube', 'Instagram'],
+                data: [10.5, 8.5, 7],
+                title: 'Cost Per Click (CPC) by Platform'
+            },
+            'Cost Per Mille (₹)': {
+                labels: ['LinkedIn', 'YouTube', 'Instagram'],
+                data: [750, 650, 550],
+                title: 'Cost Per 1000 Impressions (CPM) by Platform'
+            },
+            'Conversion Rate (%)': {
+                labels: ['LinkedIn', 'Instagram', 'YouTube'],
+                data: [0.28, 0.23, 0.22],
+                title: 'Conversion Rate by Platform'
+            },
+            'Cost Per Conversion (₹)': {
+                labels: ['YouTube', 'LinkedIn', 'Instagram'],
+                data: [3800, 3700, 3000],
+                title: 'Cost Per Conversion by Platform'
+            },
+            'Cost Per Quality Conversion (₹)': {
+                labels: ['YouTube', 'LinkedIn', 'Instagram'],
+                data: [34000, 25000, 19000],
+                title: 'Cost Per Quality Conversion by Platform'
+            }
+        };
+        
+        // Dynamically assign brand colors to each dataset
+        for (const metric in campaignData) {
+            if (campaignData.hasOwnProperty(metric)) {
+                campaignData[metric].backgroundColor = campaignData[metric].labels.map(label => platformColors[label]);
+            }
+        }
+
+        const ctx = document.getElementById('campaignChart').getContext('2d');
+        let chart;
+
+        function renderChart(metric) {
+            if (chart) {
+                chart.destroy();
+            }
+            
+            const chartConfig = campaignData[metric];
+
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartConfig.labels,
+                    datasets: [{
+                        label: metric,
+                        data: chartConfig.data,
+                        backgroundColor: chartConfig.backgroundColor,
+                        borderColor: chartConfig.backgroundColor.map(color => color.replace('0.8', '1')),
+                        borderWidth: 1,
+                        borderRadius: 5,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: chartConfig.title,
+                            font: {
+                                size: 18,
+                                weight: 'bold'
+                            },
+                            color: '#ffffff',
+                            padding: {
+                                top: 10,
+                                bottom: 20
+                            }
+                        },
+                        tooltip: {
+                           callbacks: {
+                               label: function(context) {
+                                   let label = context.dataset.label || '';
+                                   if (label) {
+                                       label += ': ';
+                                   }
+                                   if (context.parsed.y !== null) {
+                                      let value = context.parsed.y;
+                                      if (metric.includes('(%)') || metric.includes('Rate')) {
+                                          label += value + '%';
+                                      } else if (metric.includes('(₹)')) {
+                                          label += '₹' + value.toLocaleString('en-IN');
+                                      } else {
+                                          label += value.toLocaleString('en-IN');
+                                      }
+                                   }
+                                   return label;
+                               }
+                           }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#e0e0e0',
+                                font: {
+                                  size: 14
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#e0e0e0',
+                                 font: {
+                                  size: 14,
+                                  weight: 'bold'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        const filtersContainer = document.getElementById('filters');
+        const metrics = Object.keys(campaignData);
+        let activeButton = null;
+        
+        metrics.forEach((metric, index) => {
+            const button = document.createElement('button');
+            button.innerText = metric;
+            button.className = 'btn-filter font-semibold py-2 px-4 rounded-full text-sm';
+            button.onclick = () => {
+                renderChart(metric);
+                if(activeButton) {
+                    activeButton.classList.remove('active');
+                }
+                button.classList.add('active');
+                activeButton = button;
+            };
+            filtersContainer.appendChild(button);
+            if (index === 0) {
+                button.click();
+            }
+        });
+    </script>
+</body>
+</html>
+
